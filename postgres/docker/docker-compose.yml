@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres
+    container_name: postgres-hvl-dat107
+    ports:
+        - "5432:5432"
+    volumes:
+       - ./data/hvl-dat107-demo:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: lj
+      POSTGRES_PASSWORD: lj
+
