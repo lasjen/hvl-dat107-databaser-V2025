@@ -27,7 +27,7 @@ SELECT student_no,
        XPath('/student/fornavn/text()', xml_info) fornavn,
        XPath('/student/etternavn/text()', xml_info) etternavn
 FROM studenter
-WHERE xpath_exists('/student[starts-with(fornavn,"N")]', xml_info);
+   WHERE xpath_exists('/student[starts-with(fornavn,"N")]', xml_info);
 
 -- ----------------------------------------------------------------------------------
 -- 3c : List ut alle fag som de ulike studentene har tatt (studentene skal være representert med «student_no»).

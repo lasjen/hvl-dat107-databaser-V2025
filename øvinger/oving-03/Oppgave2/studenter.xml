@@ -1,0 +1,104 @@
+<?xml version = "1.0" encoding="utf-8" ?>
+<?xml-stylesheet type = "text/xsl" href = "studenter-løsning.xsl"?>
+<hvl>
+   <studenter>
+      <student studentnr = "101">
+         <fornavn>Ola</fornavn>
+         <etternavn>Nordmann</etternavn>
+         <studiestart><semester>H</semester><år>2023</år></studiestart>
+         <emner>
+            <emne><kode>DAT100</kode><poeng>86</poeng></emne>
+            <emne><kode>MAT101</kode><poeng>92</poeng></emne>
+            <emne><kode>ING100</kode><poeng>77</poeng></emne>
+            <emne><kode>DAT111</kode><poeng>81</poeng></emne>
+            <emne><kode>DAT102</kode><poeng>45</poeng></emne>
+            <emne><kode>DAT107</kode><poeng>94</poeng></emne>
+            <emne><kode>MAT104</kode><poeng>84</poeng></emne>
+            <emne><kode>MAT210</kode><poeng>79</poeng></emne>
+            <emne><kode>MAT122</kode><poeng>89</poeng></emne>
+            <emne><kode>DAT108</kode><poeng>91</poeng></emne>
+            <emne><kode>MAT103</kode><poeng>88</poeng></emne>
+         </emner>
+      </student>
+      <student studentnr = "202">
+         <fornavn>Kari</fornavn>
+         <etternavn>Kylling</etternavn>
+         <studiestart><semester>H</semester><år>2023</år></studiestart>
+         <emner>
+            <emne><kode>DAT100</kode><poeng>79</poeng></emne>
+            <emne><kode>MAT101</kode><poeng>82</poeng></emne>
+            <emne><kode>ING100</kode><poeng>84</poeng></emne>
+            <emne><kode>DAT111</kode><poeng>74</poeng></emne>
+            <emne><kode>DAT102</kode><poeng>87</poeng></emne>
+            <emne><kode>DAT107</kode><poeng>88</poeng></emne>
+            <emne><kode>MAT104</kode><poeng>82</poeng></emne>
+            <emne><kode>MAT210</kode><poeng>89</poeng></emne>
+            <emne><kode>MAT122</kode><poeng>92</poeng></emne>
+            <emne><kode>DAT108</kode><poeng>94</poeng></emne>
+            <emne><kode>MAT103</kode><poeng>88</poeng></emne>
+         </emner>
+      </student>
+      <student studentnr = "303">
+         <fornavn>Nils</fornavn>
+         <etternavn>Nilsen</etternavn>
+         <studiestart><semester>H</semester><år>2023</år></studiestart>
+         <emner>
+            <emne><kode>DAT100</kode><poeng>95</poeng></emne>
+            <emne><kode>MAT101</kode><poeng>92</poeng></emne>
+            <emne><kode>ING100</kode><poeng>89</poeng></emne>
+            <emne><kode>DAT111</kode><poeng>96</poeng></emne>
+            <emne><kode>DAT102</kode><poeng>85</poeng></emne>
+            <emne><kode>DAT107</kode><poeng>94</poeng></emne>
+            <emne><kode>MAT104</kode><poeng>84</poeng></emne>
+            <emne><kode>MAT210</kode><poeng>89</poeng></emne>
+            <emne><kode>MAT122</kode><poeng>92</poeng></emne>
+            <emne><kode>DAT108</kode><poeng>94</poeng></emne>
+            <emne><kode>MAT103</kode><poeng>88</poeng></emne>
+         </emner>
+      </student>
+      <student studentnr="404">
+         <fornavn>Jan</fornavn>
+         <etternavn>Banan</etternavn>
+         <studiestart><semester>H</semester><år>2024</år></studiestart>
+         <emner>
+            <emne><kode>DAT100</kode><poeng>69</poeng></emne>
+            <emne><kode>MAT101</kode><poeng>72</poeng></emne>
+            <emne><kode>ING100</kode><poeng>74</poeng></emne>
+            <emne><kode>DAT111</kode><poeng>76</poeng></emne>
+         </emner>
+      </student>
+      <student studentnr="505">
+         <fornavn>Janne</fornavn>
+         <etternavn>Kjempeflink</etternavn>
+         <studiestart><semester>H</semester><år>2024</år></studiestart>
+         <emner>
+            <emne><kode>DAT100</kode><poeng>93</poeng></emne>
+            <emne><kode>MAT101</kode><poeng>90</poeng></emne>
+            <emne><kode>ING100</kode><poeng>89</poeng></emne>
+            <emne><kode>DAT111</kode><poeng>97</poeng></emne>
+         </emner>
+      </student>
+      <student studentnr="606">
+         <fornavn>Bob</fornavn>
+         <etternavn>Sliterlitt</etternavn>
+         <studiestart><semester>H</semester><år>2024</år></studiestart>
+         <emner>
+            <emne><kode>DAT100</kode><poeng>56</poeng></emne>
+            <emne><kode>MAT101</kode><poeng>66</poeng></emne>
+            <emne><kode>ING100</kode><poeng>25</poeng></emne>
+            <emne><kode>DAT111</kode><poeng>51</poeng></emne>
+         </emner>
+      </student>
+      <student studentnr="707">
+         <fornavn>Espen</fornavn>
+         <etternavn>Midtpåtreet</etternavn>
+         <studiestart><semester>H</semester><år>2024</år></studiestart>
+         <emner>
+            <emne><kode>DAT100</kode><poeng>81</poeng></emne>
+            <emne><kode>MAT101</kode><poeng>89</poeng></emne>
+            <emne><kode>ING100</kode><poeng>83</poeng></emne>
+            <emne><kode>DAT111</kode><poeng>72</poeng></emne>
+         </emner>
+      </student>
+   </studenter>
+</hvl>

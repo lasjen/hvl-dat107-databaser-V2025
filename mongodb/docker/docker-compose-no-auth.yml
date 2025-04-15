@@ -3,6 +3,6 @@ services:
     image: mongodb/mongodb-community-server:latest
     container_name: mongodb-no-auth
     ports:
-      - "27017:27017"
+      - "27018:27017"
 #    volumes:
 #      - ./data/mongodb-no-auth:/data/db

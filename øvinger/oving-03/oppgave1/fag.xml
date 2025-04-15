@@ -1,0 +1,34 @@
+<?xml version = "1.0" encoding="utf-8"?>
+<?xml-stylesheet type = "text/xsl" href = "fag-løsning.xsl"?>
+<!-- <hvl> -->
+<!-- <hvl xmlns="http://oving.hvl.no/fag"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://oving.hvl.no/fag fag.xsd"> -->
+<hvl>
+   <emner>
+      <emne><kode>DAT100</kode><navn>Grunnleggende Programmering</navn><poeng>10</poeng><semester>1</semester></emne>
+      <emne><kode>MAT101</kode><navn>Diskret Matematikk 1</navn><poeng>10</poeng><semester>1</semester></emne>
+      <emne><kode>ING100</kode><navn>Ingeniørfaglig</navn><poeng>5</poeng><semester>1</semester></emne>
+      <emne><kode>DAT111</kode><navn>Introduksjon til programvareutvikling</navn><poeng>5</poeng><semester>1</semester></emne>
+      <emne><kode>DAT102</kode><navn>Algoritmer og datastrukturer</navn><poeng>10</poeng><semester>2</semester></emne>
+      <emne><kode>DAT107</kode><navn>Databaser</navn><poeng>10</poeng><semester>2</semester></emne>
+      <emne><kode>MAT104</kode><navn>Grunnleggende matematikk for informasjonsteknologi</navn><poeng>10</poeng><semester>2</semester></emne>
+      <emne><kode>MAT210</kode><navn>Videregående diskret matematikk</navn><poeng>5</poeng><semester>3</semester></emne>
+      <emne><kode>MAT122</kode><navn>Statistikk for ingenilører</navn><poeng>5</poeng><semester>3</semester></emne>
+      <emne><kode>DAT108</kode><navn>Programmering og webapplikasjoner</navn><poeng>10</poeng><semester>3</semester></emne>
+      <emne><kode>DAT103</kode><navn>Datamaskiner og operativsystemer</navn><poeng>10</poeng><semester>3</semester></emne>
+      <emne><kode>DAT109</kode><navn>Systemutvikling</navn><poeng>10</poeng><semester>4</semester></emne>
+      <emne><kode>DAT110</kode><navn>Distribuerte systemer og nettverksteknologi</navn><poeng>10</poeng><semester>4</semester></emne>
+      <emne><kode>DAT154</kode><navn>Programvarearkitektur og applikasjonsutvikling</navn><poeng>10</poeng><semester>4</semester></emne>
+      <emne><kode>DAT152</kode><navn>Videregående webapplikasjoner</navn><poeng>10</poeng><semester>5</semester></emne>
+      <emne><kode>DAT156</kode><navn>Praksis i arbeidslivet for data</navn><poeng>10</poeng><semester>5</semester></emne>
+      <emne><kode>DAT158</kode><navn>Maskinlæring og videregående algoritmer</navn><poeng>10</poeng><semester>5</semester></emne>
+      <emne><kode>DAT150</kode><navn>Nettverksadministrasjon, drift og sikkerhet</navn><poeng>10</poeng><semester>5</semester></emne>
+      <emne><kode>DAT153</kode><navn>Mobile og distribuerte applikasjoner</navn><poeng>10</poeng><semester>6</semester></emne>
+      <emne><kode>DAT155</kode><navn>3D Datagrafikk</navn><poeng>10</poeng><semester>6</semester></emne>
+      <emne><kode>DAT151</kode><navn>Drift av Unix og databaser</navn><poeng>10</poeng><semester>6</semester></emne>
+      <emne><kode>DAT253</kode><navn>Avansert datagrafikk</navn><poeng>10</poeng><semester>6</semester></emne>
+      <emne><kode>DAT191</kode><navn>Bacheloroppgave</navn><poeng>20</poeng><semester>5</semester></emne>
+      <emne><kode>ING303</kode><navn>Systemtenking og innovasjon for ingeniører</navn><poeng>10</poeng><semester>5</semester></emne>
+   </emner>
+</hvl>

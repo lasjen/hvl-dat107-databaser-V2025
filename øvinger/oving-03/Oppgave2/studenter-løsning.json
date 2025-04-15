@@ -1,0 +1,35 @@
+[
+  {
+    "studentnr": "101",
+    "fornavn": "Ola",
+    "etternavn": "Nordmann",
+    "studiestart": {"semester": "H", "år": 2023 },
+    "emner": [
+      {"kode": "DAT100", "poeng": 86 },
+      {"kode": "MAT101", "poeng": 92 },
+      {"kode": "ING100", "poeng": 77 }
+    ]
+  },
+  {
+    "studentnr": "202",
+    "fornavn": "Kari",
+    "etternavn": "Kylling",
+    "studiestart": {"semester": "H", "år": 2023 },
+    "emner": [
+      {"kode": "DAT100", "poeng": 79 },
+      {"kode": "MAT101", "poeng": 82 },
+      {"kode": "ING100", "poeng": 84 }
+    ]
+  },
+  {
+    "studentnr": "303",
+    "fornavn": "Nils",
+    "etternavn": "Nilsen",
+    "studiestart": {"semester": "H", "år": 2023 },
+    "emner": [
+      {"kode": "DAT100", "poeng": 95 },
+      {"kode": "MAT101", "poeng": 92 },
+      {"kode": "ING100", "poeng": 89 }
+    ]
+  }
+]

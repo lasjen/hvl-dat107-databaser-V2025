@@ -1,0 +1,8 @@
+{
+  "emner":
+  [
+    {"kode": "DAT100", "navn": "Grunnleggende Programmering", "semester": 1},
+    {"kode": "MAT101", "navn": "Diskret Matematikk 1", "semester": 1},
+    {"kode": "ING100", "navn": "Ingeniørfaglig", "semester": 1}
+  ]
+}
