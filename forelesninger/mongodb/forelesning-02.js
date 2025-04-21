@@ -2,6 +2,7 @@ show dbs
 use forelesning-02
 
 // CRUD - Create
+db.eiere.drop();
 db.eiere.insertOne(
     { navn: "Kari", by: "Tromsø", alder: 25 }
 );
@@ -104,7 +105,7 @@ db.books.find({title: "Min kamp", author: "Karl Ove Knausgård", year: 2024})
 
 db.books.find({ title: "min kamp" });
 db.books.find({ title: /min kamp/i });
-db.books.find({ title: /min/ });
+db.books.find({ title: /min/i });
 db.books.find({ title: { $regex: /min/i } });
 
 db.books.find({ author: /^p/i });       // starter på
@@ -225,6 +226,7 @@ db.eiere.find({by:{$ne:"Oslo"}})
 db. eiere.find( { $nor: [ {by:"Oslo"}, { alder: {$gte: 10} } ]})
 
 // expr
+db.monthlyBudget.drop()
 db.monthlyBudget.insertMany( [
     { _id : 1, category : "food",    budget : 400, spent : 450 },
     { _id : 2, category : "drinks",  budget : 100, spent : 150 },
