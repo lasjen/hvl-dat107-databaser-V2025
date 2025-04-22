@@ -1,36 +1,10 @@
 show dbs
 use forelesning-02
 
-// CRUD - Create
-db.eiere.drop();
-db.eiere.insertOne(
-    { navn: "Kari", by: "Tromsø", alder: 25 }
-);
-
-db.books.insertMany([
-    {
-        title: "Min kamp",
-        author: "Karl Ove Knausgård",
-        year: 2024,
-        pages: Int32(303),
-        price: Decimal128("359.90"),
-        published: ISODate("2009-04-03"),
-        created: new Date()
-    },
-    {
-        title: "Java – For dummies",
-        author: "Barry A. Burd",
-        year: 2024,
-        pages: 432,
-        price: NumberDecimal("389.90"),
-        published: ISODate("2009-01-02"),
-        created: new Date()
-    }
-]);
-
-// CRUD - Read
-// Books
+// Clean
 db.books.drop();
+
+// CRUD - Create some data
 db.books.insertMany([
     {
         title: "Min kamp",
@@ -105,12 +79,12 @@ db.books.find({title: "Min kamp", author: "Karl Ove Knausgård", year: 2024})
 
 db.books.find({ title: "min kamp" });
 db.books.find({ title: /min kamp/i });
-db.books.find({ title: /min/i });
-db.books.find({ title: { $regex: /min/i } });
+db.books.find({ title: /in/i });
+db.books.find({ title: { $regex: /in/i } });
 
-db.books.find({ author: /^p/i });       // starter på
-db.books.find({ author: /gård$/i });    // slutter på
-db.books.find({ author: /^j.*n$/i });   // start og slutter på
+db.books.find({ author: /^p/i });           // starter på
+db.books.find({ author: /gård$/i });        // slutter på
+db.books.find({ author: /^j.*n$/i });       // start og slutter på
 db.books.find({ author: { $not: /^j/i }});
 db.books.find({ author: /^[a-å]r/i });
 
@@ -187,7 +161,11 @@ db.eiere.insertMany([
     { navn: "Jonny", by: "Oslo", alder: 12 },
     { navn: "Stefan", by: "Tromsø", alder: 11 },
     { navn: "Sigurd", by: "Bergen", alder: 10 },
-    { navn: "Roald", by: "Os", alder: 2 }
+    { navn: "Roald", by: "Os", alder: 2 },
+    { navn: "Ole", by: "Gokk", alder: 78 },
+    { navn: "Ole", by: "Sørlia", alder: 33 },
+    { navn: "Ole", by: "Nord", alder: 14 },
+    { navn: "Ole", by: "Sør", alder: 78 }
 ]);
 
 db.eiere.find().count()
@@ -317,4 +295,23 @@ db.eiere.updateOne( // Carl eksisterer ikke, upsert false (default)
     { $setOnInsert: { alder: 26 } }
 );
 
+// Find and Update (with returnDocument)
+db.eiere.find({ navn: "Kari" })
+db.eiere.findOneAndUpdate(  // Kari eksisterer
+    { navn: "Kari" },
+    { $set: { alder: 26 } }
+);
+db.eiere.findOneAndUpdate(  // Kari eksisterer
+    { navn: "Kari" },
+    { $set: { alder: 27 } },
+    { returnDocument: "after" }
+);
 
+// CRUD - Delete
+db.eiere.find({ navn: "Kari" })
+db.eiere.findOneAndDelete({ navn: "Kari" })
+db.eiere.find({ navn: "Kari" })
+
+db.eiere.find({navn: "Ole"}).count();
+db.eiere.deleteOne({ navn: "Ole"})
+db.eiere.deleteMany({ navn: "Ole"})
