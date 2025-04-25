@@ -4,7 +4,9 @@ use forelesning-02
 // Clean
 db.books.drop();
 
-// CRUD - Create some data
+// -----------------------------------------
+// CRUD - CREATE (Create some data)
+// -----------------------------------------
 db.books.insertMany([
     {
         title: "Min kamp",
@@ -71,7 +73,9 @@ db.books.insertMany([
     }
 ]);
 
+// ---------------------------------------------
 // CRUD - Read (continues)
+// ---------------------------------------------
 db.books.find()
 db.books.find({title: "Min kamp"})
 db.books.find({title: "Min kamp", author: "Karl Ove Knausgård"})
@@ -107,7 +111,7 @@ db.books.find({ author: /^P/i }).limit(1)
 // Sortering
 db.books.find({}).sort({ title: 1 });
 
-// Eiere
+// Eiere -- Laster litt test data
 db.eiere.drop();
 db.eiere.insertMany([
     { navn: "Kari", by: "Tromsø", alder: 25 },
@@ -203,40 +207,11 @@ db.eiere.find({by:{$ne:"Oslo"}})
 // nor
 db. eiere.find( { $nor: [ {by:"Oslo"}, { alder: {$gte: 10} } ]})
 
-// expr
-db.monthlyBudget.drop()
-db.monthlyBudget.insertMany( [
-    { _id : 1, category : "food",    budget : 400, spent : 450 },
-    { _id : 2, category : "drinks",  budget : 100, spent : 150 },
-    { _id : 3, category : "clothes", budget : 100, spent :  50 },
-    { _id : 4, category : "misc",    budget : 500, spent : 300 },
-    { _id : 5, category : "travel",  budget : 200, spent : 650 }
-]);
-
-// Find categories where spent more than budget
-db.monthlyBudget.find({ $expr: { $gt: [ "$spent", "$budget" ] } });
 
 
-// What if x=0
-db.dummy.drop();
-db.dummy.insertMany([
-    {x: 0, y: 0},{x: 1, y: 0},{x: 2, y: 0},{x: 3, y: 0},
-    {x: 0, y: 1},{x: 1, y: 1},{x: 2, y: 1},{x: 3, y: 1},
-    {x: 0, y: 2},{x: 1, y: 2},{x: 2, y: 2},{x: 3, y: 2},
-    {x: 0, y: 3},{x: 1, y: 3},{x: 2, y: 3},{x: 3, y: 3}
-]);
-
-
-db.dummy.find({$expr: {$eq:[ {$divide:["$y","$x"]},1]}})
-
-db.dummy.find( {
-    $and: [
-        { x: { $ne: 0 } },
-        {$expr: {$eq:[ {$divide:["$y","$x"]},1]}}
-    ]
-})
-
+// ----------------------------------------
 // CRUD - Update
+// ----------------------------------------
 var objId = db.eiere.find({ navn: "Kari" }, { _id: 1 }).toArray()[0]._id;
 db.eiere.updateOne(
     { _id: objId},
@@ -246,14 +221,14 @@ db.eiere.updateOne(
 // Kunne også ha funnet id-en med, og kopiert
 db.eiere.find({ navn: "Kari" })
 db.eiere.updateOne(
-    { _id: ObjectId("67ffcbc47bfeb55bdd93c0a2")},
+    { _id: ObjectId("680aa59c4daf2ec9a471e27f")},
     { $set:  { by: "Tromsø" } }
 );
 
 // CRUD - replace (en form for update)
 db.eiere.find({ navn: "Kari" })
 db.eiere.replaceOne(
-    { _id: ObjectId('67ffcbc47bfeb55bdd93c0a2')},
+    { _id: objId},
     { navn: "Lise", by: "Bergen" }
 );
 db.eiere.find({ navn: "Lise" })
@@ -299,11 +274,11 @@ db.eiere.updateOne( // Carl eksisterer ikke, upsert false (default)
 db.eiere.find({ navn: "Kari" })
 db.eiere.findOneAndUpdate(  // Kari eksisterer
     { navn: "Kari" },
-    { $set: { alder: 26 } }
+    { $set: { alder: 30 } }
 );
 db.eiere.findOneAndUpdate(  // Kari eksisterer
     { navn: "Kari" },
-    { $set: { alder: 27 } },
+    { $set: { alder: 40 } },
     { returnDocument: "after" }
 );
 
@@ -315,3 +290,40 @@ db.eiere.find({ navn: "Kari" })
 db.eiere.find({navn: "Ole"}).count();
 db.eiere.deleteOne({ navn: "Ole"})
 db.eiere.deleteMany({ navn: "Ole"})
+
+
+// ----------------------------------------
+// Denne delen er ikke viktig
+// ----------------------------------------
+// expr
+db.monthlyBudget.drop()
+db.monthlyBudget.insertMany( [
+    { _id : 1, category : "food",    budget : 400, spent : 450 },
+    { _id : 2, category : "drinks",  budget : 100, spent : 150 },
+    { _id : 3, category : "clothes", budget : 100, spent :  50 },
+    { _id : 4, category : "misc",    budget : 500, spent : 300 },
+    { _id : 5, category : "travel",  budget : 200, spent : 650 }
+]);
+
+// Find categories where spent more than budget
+db.monthlyBudget.find({ $expr: { $gt: [ "$spent", "$budget" ] } });
+
+
+// What if x=0
+db.dummy.drop();
+db.dummy.insertMany([
+    {x: 0, y: 0},{x: 1, y: 0},{x: 2, y: 0},{x: 3, y: 0},
+    {x: 0, y: 1},{x: 1, y: 1},{x: 2, y: 1},{x: 3, y: 1},
+    {x: 0, y: 2},{x: 1, y: 2},{x: 2, y: 2},{x: 3, y: 2},
+    {x: 0, y: 3},{x: 1, y: 3},{x: 2, y: 3},{x: 3, y: 3}
+]);
+
+
+db.dummy.find({$expr: {$eq:[ {$divide:["$y","$x"]},1]}})
+
+db.dummy.find( {
+    $and: [
+        { x: { $ne: 0 } },
+        {$expr: {$eq:[ {$divide:["$y","$x"]},1]}}
+    ]
+})

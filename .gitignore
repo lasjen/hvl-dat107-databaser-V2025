@@ -1,1 +1,11 @@
+# IntelliJ IDEA
 .idea
+
+# MongoDB Data
+mongodb/docker/data
+
+# Postgres Data
+postgres/docker/data
+
+# Eclipse IDE - exclude bin folder
+**/bin/
