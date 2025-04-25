@@ -213,6 +213,9 @@ db. eiere.find( { $nor: [ {by:"Oslo"}, { alder: {$gte: 10} } ]})
 // CRUD - Update
 // ----------------------------------------
 var objId = db.eiere.find({ navn: "Kari" }, { _id: 1 }).toArray()[0]._id;
+print("objId: " + objId);
+//var objId = db.eiere.findOne({ navn: "Kari" }, { _id: 1 })._id;
+
 db.eiere.updateOne(
     { _id: objId},
     { $set:  { by: "Oslo" } }

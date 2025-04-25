@@ -1,9 +1,19 @@
+/*
+ * MongoDB - Tema 4: BSON og spørringer
+ *
+ * Forelesning 3: Datamodellering
+ *
+ * INFO! Denne forelesningen er flyttet til siste del av NOSQL-delen. Ignorer før dette.
+ *       I disse eksemplene er det brukt funksjonalitet som dere IKKE trenger å kunne til eksamen.
+ *       Eksemplene er kun ment som en demonstrasjon av hva som er mulig å gjøre med MongoDB.
+ */
 show dbs
 use forelesning-03
 
 db.ansatte.drop()
 db.ansattehistorie.drop()
 
+//
 var objId = new ObjectId()
 var oppdDato = new ISODate()
 db.ansatte.insertOne(
