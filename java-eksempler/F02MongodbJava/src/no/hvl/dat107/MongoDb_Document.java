@@ -38,7 +38,7 @@ public class MongoDb_Document {
         // ---------------------------------------------
         collInnlegg.drop();    
         
-        System.exit(0);
+        //System.exit(0);
         
         
         
@@ -71,7 +71,7 @@ public class MongoDb_Document {
         // Men vi kan også hente Id fra Document
         info("ID from document: " + nr1Innlegg.getObjectId("_id"));
         
-	    System.exit(0);
+	    //System.exit(0);
         
 	    
 	    

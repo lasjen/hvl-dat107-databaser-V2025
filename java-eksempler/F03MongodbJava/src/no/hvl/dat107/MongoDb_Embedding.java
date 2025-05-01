@@ -1,6 +1,7 @@
 package no.hvl.dat107;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,9 +51,9 @@ public class MongoDb_Embedding {
 			new Innlegg()
 				.setTittel("Post 10")
 				.setInnhold("Bla 10, bla, bla ...")
-				.setOpprettetDato(LocalDate.now())
+				.setOpprettetDato(LocalDateTime.now())
 				.setKommentarer(List.of(
-						new Kommentar().setTekst("Helt konge.").setOpprettetDato(LocalDate.of(2024, 10, 11)),
+						new Kommentar().setTekst("Helt konge.").setOpprettetDato(LocalDate.now()),
 						new Kommentar().setTekst("Kunne ha vært litt mer innhold.").setOpprettetDato(LocalDate.of(2024,12,25)),
 						new Kommentar().setTekst("Kunne ha vært litt mindre innhold.").setOpprettetDato(LocalDate.of(2025, 1, 2)))
 					)
@@ -61,7 +62,7 @@ public class MongoDb_Embedding {
 				new Innlegg()
 					.setTittel("Post 11")
 					.setInnhold("Bla 11, bla, bla ...")
-					.setOpprettetDato(LocalDate.now())
+					.setOpprettetDato(LocalDateTime.now())
 					.setKommentarer(List.of(
 							new Kommentar().setTekst("Det innlegget var bra.").setOpprettetDato(LocalDate.of(2023,2,2)),
 							new Kommentar().setTekst("Beste jeg har lest.").setOpprettetDato(LocalDate.of(2024,7,9)))

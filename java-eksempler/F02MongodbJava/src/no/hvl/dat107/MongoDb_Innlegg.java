@@ -18,10 +18,11 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.FindIterable;
-import static com.mongodb.client.model.Filters.regex;
 
 import no.hvl.dat107.model.Innlegg;
+
+import com.mongodb.client.FindIterable;
+import static com.mongodb.client.model.Filters.regex;
 
 public class MongoDb_Innlegg {
 
@@ -60,7 +61,7 @@ public class MongoDb_Innlegg {
         // ---------------------------------------------
         collInnlegg.drop();
         
-        System.exit(0);
+        //System.exit(0);
         
         
         

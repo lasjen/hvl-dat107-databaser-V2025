@@ -212,10 +212,11 @@ db. eiere.find( { $nor: [ {by:"Oslo"}, { alder: {$gte: 10} } ]})
 // ----------------------------------------
 // CRUD - Update
 // ----------------------------------------
-var objId = db.eiere.find({ navn: "Kari" }, { _id: 1 }).toArray()[0]._id;
+//var objId = db.eiere.find({ navn: "Kari" }, { _id: 1 }).toArray()[0]._id;
 print("objId: " + objId);
-//var objId = db.eiere.findOne({ navn: "Kari" }, { _id: 1 })._id;
+var objId = db.eiere.findOne({ navn: "Kari" }, { _id: 1 })._id;
 
+db.eiere.find({ _id: objId })
 db.eiere.updateOne(
     { _id: objId},
     { $set:  { by: "Oslo" } }
@@ -224,7 +225,7 @@ db.eiere.updateOne(
 // Kunne også ha funnet id-en med, og kopiert
 db.eiere.find({ navn: "Kari" })
 db.eiere.updateOne(
-    { _id: ObjectId("680aa59c4daf2ec9a471e27f")},
+    { _id: objId },
     { $set:  { by: "Tromsø" } }
 );
 
@@ -270,8 +271,10 @@ db.eiere.updateOne( // Carl eksisterer ikke, upsert false (default)
 
 db.eiere.updateOne( // Carl eksisterer ikke, upsert false (default)
     { navn: "Carl" },
-    { $setOnInsert: { alder: 26 } }
+    { $setOnInsert: { alder: 26 } },
+    { upsert: true }
 );
+
 
 // Find and Update (with returnDocument)
 db.eiere.find({ navn: "Kari" })
@@ -284,6 +287,24 @@ db.eiere.findOneAndUpdate(  // Kari eksisterer
     { $set: { alder: 40 } },
     { returnDocument: "after" }
 );
+
+// Både $set og $setOnInsert
+db.eiere.deleteOne({ navn: "Carl" })
+var carl = db.eiere.findOneAndUpdate( // Carl eksisterer ikke, upsert false (default)
+    { navn: "Carl" },
+    { $setOnInsert: { created: new ISODate() },  $set: { by: "Oslo", alder: 20 } },
+    { upsert: true , returnDocument: "after"}
+);
+
+print(carl)
+
+var carl = db.eiere.findOneAndUpdate( // Carl eksisterer ikke, upsert false (default)
+    { navn: "Carl" },
+    { $setOnInsert: { created: new ISODate() },  $set: { by: "Bergen" } },
+    { upsert: true , returnDocument: "after"}
+);
+
+
 
 // CRUD - Delete
 db.eiere.find({ navn: "Kari" })

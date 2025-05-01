@@ -3,9 +3,11 @@ package no.hvl.dat107.repository;
 import static com.mongodb.client.model.Filters.eq;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
@@ -20,9 +22,12 @@ import com.mongodb.client.model.ReturnDocument;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.InsertManyResult;
 
 import no.hvl.dat107.model.Innlegg;
 import no.hvl.dat107.model.Kommentar;
+
+import java.util.regex.Pattern;
 
 public class InnleggRepository {
 	private MongoClient client;
@@ -41,6 +46,9 @@ public class InnleggRepository {
     // CREATE
     // ---------------------------------------------
 	public void create(Innlegg innlegg) {
+		if (innlegg.getOpprettetDato()==null) {
+			innlegg.setOpprettetDato(LocalDateTime.now());
+		}
 		collInnlegg.insertOne(innlegg);
 	}
 	
@@ -63,9 +71,37 @@ public class InnleggRepository {
 		return collInnlegg.find();
 	}
 	
-	public Innlegg getInnleggById(ObjectId id) {
+	public List<Innlegg> readAll2() {
+		List<Innlegg> alleInnlegg = new ArrayList<Innlegg>();
+		collInnlegg.find().into(alleInnlegg);
+		return alleInnlegg;
+	}
+	
+	public Innlegg readById(ObjectId id) {
 		Bson filter = Filters.eq("_id", id);
 		return collInnlegg.find(filter).first();
+	}
+	
+	public List<Innlegg> readByTittelContains(String searchText) { 
+		List<Innlegg> alleInnlegg = new ArrayList<Innlegg>();
+		
+		Pattern pattern = Pattern.compile(Pattern.quote(searchText), Pattern.CASE_INSENSITIVE);
+		Bson filter = Filters.regex("tittel", pattern);
+		
+		collInnlegg.find(filter).into(alleInnlegg);
+		
+		return alleInnlegg;
+	}
+	
+	public List<Innlegg> readByTittelStartWith(String searchText) { 
+		List<Innlegg> alleInnlegg = new ArrayList<Innlegg>();
+		
+		Pattern pattern = Pattern.compile("^" + Pattern.quote(searchText), Pattern.CASE_INSENSITIVE);
+		Bson filter = Filters.regex("tittel", pattern);
+		
+		collInnlegg.find(filter).into(alleInnlegg);
+		
+		return alleInnlegg;
 	}
 	
 	// ---------------------------------------------
@@ -73,19 +109,37 @@ public class InnleggRepository {
     // ---------------------------------------------
 	public void update(Innlegg innlegg) {
 		Bson filter = Filters.eq("_id", innlegg.getId());
-		UpdateOptions options = new UpdateOptions().upsert(true);
+		
+		Bson oppdateringer = Updates.combine(
+				Updates.set("tittel", innlegg.getTittel()),	
+				Updates.set("innhold", innlegg.getInnhold()),
+				Updates.set("oppdatert", LocalDateTime.now()),              
+				Updates.setOnInsert("opprettet", LocalDateTime.now())
+				);
+		
+		collInnlegg.updateOne(filter, oppdateringer);
+		
+	}
+	
+	public Innlegg updateAndReturn(Innlegg innlegg) {
+		Bson filter = Filters.eq("_id", innlegg.getId());
+		FindOneAndUpdateOptions options = 
+				new FindOneAndUpdateOptions()
+				    .returnDocument(ReturnDocument.AFTER)
+					.upsert(true);
 		
 		Bson oppdateringer = Updates.combine(
 				Updates.set("tittel", innlegg.getTittel()),					// set - setOnInsert
 				Updates.set("innhold", innlegg.getInnhold()),
-				Updates.set("kommentarer", innlegg.getKommentarer()),
-				Updates.setOnInsert("opprettet", LocalDate.now())
+				Updates.set("oppdatert", LocalDateTime.now()),              
+				Updates.setOnInsert("opprettet", LocalDateTime.now())
 				);
 		
-		collInnlegg.updateOne(
+		return collInnlegg.findOneAndUpdate(
 			filter, 								// filter
 			oppdateringer						    // Updates
 			, options);								// Options
+		
 	}
 	
 	public Innlegg replace(Innlegg innlegg) {
@@ -132,4 +186,19 @@ public class InnleggRepository {
 		collInnlegg.drop();
 	}
 
+	// ---------------------------------------------
+    // ADMIN
+    // ---------------------------------------------
+	public void init() {
+		List<Innlegg> alleInnlegg = new ArrayList<Innlegg>();
+		
+		alleInnlegg.add(new Innlegg().setTittel("Post 2").setInnhold("Bla 2, bla, bla ..."));
+		alleInnlegg.add(new Innlegg().setTittel("Post 3").setInnhold("Bla 3, bla, bla ..."));
+		alleInnlegg.add(new Innlegg().setTittel("Post 4").setInnhold("Bla 4, bla, bla ..."));
+		alleInnlegg.add(new Innlegg().setTittel("Blog 5")
+				                    .setInnhold("Siste post i rekken av mange ...")
+				                    .setOpprettetDato(LocalDateTime.of(2025, 4, 19, 22, 02, 01)));
+        
+        collInnlegg.insertMany(alleInnlegg);
+	}
 }

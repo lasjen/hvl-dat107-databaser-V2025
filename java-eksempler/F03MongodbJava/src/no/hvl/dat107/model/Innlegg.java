@@ -1,6 +1,7 @@
 package no.hvl.dat107.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,11 @@ public class Innlegg {
 	
 	private String innhold;
 	
+	@BsonProperty(value = "oppdatert")
+	private LocalDateTime oppdatertDato;
+	
 	@BsonProperty(value = "opprettet")
-	private LocalDate opprettetDato;
+	private LocalDateTime opprettetDato;
 	
 	@BsonProperty(value = "kommentarer")
 	private List<Kommentar> kommentarer; 
@@ -25,26 +29,28 @@ public class Innlegg {
 		this.kommentarer = new ArrayList<Kommentar>();
 	}
 
+	/*
 	public Innlegg(String tittel, String innhold) {
 		this.tittel = tittel;
 		this.innhold = innhold;
-		this.opprettetDato = LocalDate.now();
+		this.opprettetDato = LocalDateTime.now();
 		this.kommentarer = new ArrayList<Kommentar>();
 	}
 	
-	public Innlegg(String tittel, String innhold, LocalDate opprettetDato) {
+	public Innlegg(String tittel, String innhold, LocalDateTime opprettetDato) {
 		this.tittel = tittel;
 		this.innhold = innhold;
 		this.opprettetDato = opprettetDato;
 		this.kommentarer = new ArrayList<Kommentar>();
 	}
 	
-	public Innlegg(String tittel, String innhold, LocalDate opprettetDato, List<Kommentar> kommentarer) {
+	public Innlegg(String tittel, String innhold, LocalDateTime opprettetDato, List<Kommentar> kommentarer) {
 		this.tittel = tittel;
 		this.innhold = innhold;
 		this.opprettetDato = opprettetDato;
 		this.kommentarer = kommentarer;
 	}
+	*/
 
 	// Getters and Setters
 	public ObjectId getId() {
@@ -74,11 +80,20 @@ public class Innlegg {
 		return this;
 	}
 
-	public LocalDate getOpprettetDato() {
+	public LocalDateTime getOppdatertDato() {
+		return oppdatertDato;
+	}
+
+	public Innlegg setOppdatertDato(LocalDateTime oppdatertDato) {
+		this.oppdatertDato = oppdatertDato;
+		return this;
+	}
+	
+	public LocalDateTime getOpprettetDato() {
 		return opprettetDato;
 	}
 
-	public Innlegg setOpprettetDato(LocalDate opprettetDato) {
+	public Innlegg setOpprettetDato(LocalDateTime opprettetDato) {
 		this.opprettetDato = opprettetDato;
 		return this;
 	}
@@ -105,8 +120,9 @@ public class Innlegg {
 
 	@Override
 	public String toString() {
-		return "Innlegg [id=" + id + ", tittel=" + tittel + ", innhold=" + innhold + ", opprettetDato=" + opprettetDato
-				+ ", kommentarer=" + kommentarer + "]";
+		return "Innlegg [id=" + id + ", tittel=" + tittel + ", innhold=" + innhold + ", opprettetDato=" + opprettetDato + ", oppdatertDato=" + oppdatertDato
+				+ ", kommentarer=" + kommentarer + "]"
+				;
 	}
 
 
